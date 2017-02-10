@@ -9,11 +9,12 @@ var request     = require('request');
 // configurations
 app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 5000));
-app.get('/subscribe', function(req, res) {
-  console.log("Test");
-})
 
 app.post('/subscribe', cors(), function (req, res) {
+  // allow cross domain
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
   var email = req.body.email.toLowerCase();
   var sendgridKey = process.env.SENDGRID_KEY;
 
