@@ -1,5 +1,6 @@
 #!/usr/bin/env nodejs
 var express     = require('express');
+var cors        = require('cors')
 var app         = express(); // create express app
 var server      = require('http').Server(app);
 var bodyParser  = require('body-parser');
@@ -12,7 +13,7 @@ app.get('/subscribe', function(req, res) {
   console.log("Test");
 })
 
-app.post('/subscribe', function (req, res) {
+app.post('/subscribe', cors(), function (req, res) {
   var email = req.body.email.toLowerCase();
   var sendgridKey = process.env.SENDGRID_KEY;
 
